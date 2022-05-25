@@ -5,6 +5,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
+const authJwt = require('./helpers/jwt');
+const errorHandler = require('./helpers/error-handler');
+
 
 app.use(cors());
 app.options('*', cors())
@@ -12,6 +15,7 @@ app.options('*', cors())
 //middleware
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
+
 
 
 //Routes
@@ -42,6 +46,5 @@ mongoose.connect(process.env.CONNECTION_STRING, {
 
 //Server
 app.listen(3000, ()=>{
-
-    console.log('server is running http://localhost:3000');
+     console.log('server is running http://localhost:3000');
 })
